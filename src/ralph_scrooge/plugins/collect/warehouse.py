@@ -27,6 +27,7 @@ def update_warehouses(data):
         id_from_assets=data['warehouse_id']
     )
     warehouse.name = data['warehouse_name']
+    warehouse.type = data['warehouse_type']
     warehouse.save()
     return created
 

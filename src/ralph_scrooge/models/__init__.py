@@ -65,6 +65,7 @@ from ralph_scrooge.models.usage import (
 
 from ralph_scrooge.models.warehouse import (
     Warehouse,
+    WarehouseType,
 )
 
 __all__ = [
@@ -110,4 +111,5 @@ __all__ = [
     'UsagePrice',
     'VirtualInfo',
     'Warehouse',
+    'WarehouseType',
 ]
