@@ -2,6 +2,7 @@ var ang_services = angular.module('ang_services', ['ngResource']);
 
 ang_services.factory('stats', ['$http', function ($http) {
     return {
+        staticUri: '/static/scrooge/partials/',
         currentSubMenu: false,
         currentLeftMenu: false,
         currentTab: false,
@@ -22,6 +23,7 @@ ang_services.factory('stats', ['$http', function ($http) {
                 "table": false,
             },
         },
+        allocationadmin: {},
         allocationclient: {
             serviceExtraCostTypes: false,
             serviceDivision: {
@@ -43,10 +45,10 @@ ang_services.factory('stats', ['$http', function ($http) {
                     Object.keys(data['menuStats']).forEach(function (key){
                         self.menuStats[key] = data['menuStats'][key]
                     })
-                    self.leftMenus = data["menus"]
-                    self.dates = data["dates"]
-                    self.currentLeftMenu = Object.keys(self.leftMenus)[0]
-                    self.refreshData()
+                    self.leftMenus = data["menus"];
+                    self.dates = data["dates"];
+                    self.currentLeftMenu = Object.keys(self.leftMenus)[0];
+                    self.refreshData();
                 }).
                 error(function(data, status, headers, config) {
                     // called asynchronously if an error occurs
@@ -75,11 +77,11 @@ ang_services.factory('stats', ['$http', function ($http) {
                 }
             })
             if (force == false && refresh == true) {
-                self.refreshCurrentSubpage()
-            }
+                self.refreshCurrentSubpage();
+            };
             if (self.menuReady == false) {
-                self.menuReady = true
-            }
+                self.menuReady = true;
+            };
         },
         refreshCurrentSubpage: function () {},
         inArray: function(value, array) {
@@ -133,6 +135,27 @@ ang_services.factory('stats', ['$http', function ($http) {
             error(function(data, status, headers, config) {
             });
         },
+        getAllocationAdminData: function () {
+            $http({
+                method: 'GET',
+                url: '/scrooge/rest/allocateadmin/'
+                    + self.menuStats['year']['current'] + '/'
+                    + self.menuStats['month']['current'] + '/'
+            }).
+            success(function(data, status, headers, config) {
+                if (data) {
+                    Object.keys(data).forEach(function (element) {
+                        self.allocationadmin[element] = data[element]
+                        if (data[element].rows.length == 0 || data[element].disabled == true) {
+                            self.allocationadmin[element].rows = [{}]
+                        }
+                    })
+                    self.currentTab = Object.keys(self.allocationadmin)[0]
+                }
+            }).
+            error(function(data, status, headers, config) {
+            });
+        },
         saveAllocation: function (tab) {
             switch(tab) {
                 case 'serviceDivision':
@@ -178,7 +201,7 @@ ang_services.factory('stats', ['$http', function ($http) {
         },
         getEnvs: function (service_id) {
             var envs = []
-            if (self.leftMenus) {
+            if (Object.keys(self.leftMenus).length > 0) {
                 self.leftMenus['services'].forEach(function (element) {
                     if (element.id == service_id) {
                         envs = element.value.envs
@@ -197,6 +220,11 @@ ang_services.factory('stats', ['$http', function ($http) {
                 }
             }
             return false
+        },
+        getCurrentTab: function() {
+            if (Object.keys(self.allocationadmin).length > 0) {
+                return self.staticUri + self.allocationadmin[self.currentTab].template
+            }
         }
     }
 }]);

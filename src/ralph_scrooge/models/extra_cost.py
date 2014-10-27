@@ -73,6 +73,10 @@ class ExtraCost(db.Model):
         blank=True,
         default="",
     )
+    only_for_admin = db.BooleanField(
+        verbose_name=_('Only for admin'),
+        default=False,
+    )
 
     class Meta:
         verbose_name = _("Extra cost")
