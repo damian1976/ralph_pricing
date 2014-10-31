@@ -23,6 +23,7 @@
         <script src="/static/scrooge/js/loading-bar.js"></script>
         <script src="/static/scrooge/js/ng-scrollbar.js"></script>
         <script src="/static/scrooge/js/ui-bootstrap-tpls-0.10.0.min.js"></script>
+        <script src="/static/scrooge/js/bootstrap.min.js"></script>
         <script src="/static/scrooge/js/bootstrap-table.js"></script>
         <script src="/static/scrooge/js/raven.min.js"></script>
         <script src="/static/scrooge/js/scrooge.js"></script>
@@ -41,7 +42,9 @@
                 <ul class="nav nav-tabs nav-main">
                     <li>
                         <span class="brand">
-                            Ralph 2
+                            <a href="/">
+                                Ralph 2
+                            </a>
                         </span>
                     </li>
                     <li><a href="/ui/ventures/">Core</a></li>
@@ -52,7 +55,7 @@
                 <main-menu></main-menu>
             </nav>
         </div>
-        <div class="container-fluid">
+        <div class="container-fluid container-fluid-main">
             <ng-view></ng-view>
         </div>
         <footer class="footer container-fluid">

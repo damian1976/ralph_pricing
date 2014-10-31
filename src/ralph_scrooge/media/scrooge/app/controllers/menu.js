@@ -5,14 +5,20 @@ scrooge.controller('MainMenuCtrl', ['$scope', '$location', 'MainMenu', function 
     $scope.stats.subMenus.$promise.then(function (subMenus) {
         subMenus.forEach(function (element) {
             if (element.name == $scope.stats.currentSubMenu) {
-                $scope.stats.currentSubMenu = element
-            }
-        })
-    })
+                $scope.stats.currentSubMenu = element;
+            };
+        });
+    });
     $scope.setActive = function(obj) {
-        $scope.stats.currentSubMenu = obj
-        if ($scope.stats.inArray($scope.stats.currentLeftMenu, $scope.stats.currentSubMenu.leftMenu) == false) {
-            $scope.stats.currentLeftMenu = $scope.stats.getFirstExistMenu()
+        if (obj.href.charAt(0) == "#") {
+            $location.path(obj.href.slice(1));
+        } else {
+            window.location.href = window.location.protocol + '//' + (window.location.host + obj.href)
         }
-    }
+
+        $scope.stats.currentSubMenu = obj;
+        if ($scope.stats.inArray($scope.stats.currentLeftMenu, $scope.stats.currentSubMenu.leftMenu) == false) {
+            $scope.stats.currentLeftMenu = $scope.stats.getFirstExistMenu();
+        };
+    };
 }]);

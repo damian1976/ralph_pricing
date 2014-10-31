@@ -13,15 +13,15 @@
     <div class="items scrollbar">
         <ul class="services">
             <li ng-show="stats.currentLeftMenu == 'services'" class="env-menu {{stats.menuStats['service']['current'] == service.id ? 'active' : ''}}" ng-repeat="service in stats.leftMenus.services | filter:searchTextMenu">
-                <a class="btn-left-menu" ng-click="menuService.changeService(service)">{{service.name}}</a>
-                <ul ng-click="menuService.changeEnv(env.id)" ng-show="stats.menuStats['service']['current'] == service.id" class="envs" ng-repeat="env in service.value.envs">
+                <a class="btn-left-menu" ng-click="stats.contentReady <= 0 ? menuService.changeService(service) : ''">{{service.name}}</a>
+                <ul ng-click="stats.contentReady <= 0 ? menuService.changeEnv(env.id) : ''" ng-show="stats.menuStats['service']['current'] == service.id" class="envs" ng-repeat="env in service.value.envs">
                     <li class="{{stats.menuStats['env']['current'] == env.id ? 'active' : ''}}">
-                        <a ng-click="setCurrentEnv(id)">{{env.name}}</a>
+                        <a>{{env.name}}</a>
                     </li>
                 </ul>
             </li>
             <li ng-show="stats.currentLeftMenu == 'teams'" class="env-menu" ng-repeat="team in stats.leftMenus.teams | filter:searchTextMenu">
-                <a class="btn-left-menu {{stats.menuStats['team']['current'] == team.id ? 'active' : ''}}" ng-click="changeTeam(team)">{{team.name}}</a>
+                <a class="btn-left-menu {{stats.menuStats['team']['current'] == team.id ? 'active' : ''}}" ng-click="stats.contentReady <= 0 ? changeTeam(team) : ''">{{team.name}}</a>
             </li>
         </ul>
     </div>

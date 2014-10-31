@@ -5,8 +5,6 @@ ang_directives.directive('menuservicedirective', function() {
         restrict: 'EACM',
         templateUrl: '/static/scrooge/partials/leftmenu.html',
         replace: true,
-        link: function (scope, element, attrs) {
-        }
     }
 });
 
@@ -15,8 +13,6 @@ ang_directives.directive('menucalendardirective', function() {
         restrict: 'EACM',
         templateUrl: '/static/scrooge/partials/calendarmenu.html',
         replace: true,
-        link: function (scope, element, attrs) {
-        }
     }
 });
 
@@ -25,7 +21,5 @@ ang_directives.directive('tabsdirective', function() {
         restrict: 'EACM',
         templateUrl: '/static/scrooge/partials/tabs.html',
         replace: true,
-        link: function (scope, element, attrs) {
-        }
     }
 });

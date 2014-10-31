@@ -4,10 +4,10 @@ ang_controllers.controller('componentsCtrl', ['$scope', '$routeParams', 'menuSer
     stats.breadcrumbs = ["service", "env"];
     if ($scope.stats.currentSubMenu == false) {
         $scope.stats.currentSubMenu = 'Components';
-    }
+    };
     $scope.stats.refreshCurrentSubpage = function () {
         stats.getComponentsData();
-    }
+    };
     $scope.stats.menuStats.subpage.change = 'components';
     $scope.stats.refreshData();
 
@@ -79,8 +79,8 @@ ang_controllers.controller('allocationClientCtrl', ['$scope', '$routeParams', 'm
                 count += parseInt(element.value);
                 if (element.service == false || element.env == false) {
                     save = false;
-                }
-            })
+                };
+            });
             scope.total = count;
         }
         switch(tab) {
@@ -93,26 +93,26 @@ ang_controllers.controller('allocationClientCtrl', ['$scope', '$routeParams', 'm
             default:
                 break;
         }
-    }
+    };
     $scope.changeTab = function (tab) {
         stats.currentTab = tab;
-    }
+    };
     $scope.changeTeam = function (team) {
         if (stats.menuStats.team.current != team.team) {
             stats.menuStats.team.change = team.id;
             stats.refreshData();
-        }
-    }
+        };
+    };
 }]);
 
 ang_controllers.controller('allocationAdminCtrl', ['$scope', '$routeParams', '$http', 'stats', function ($scope, $routeParams, $http, stats) {
     stats.breadcrumbs = ["tab"];
     stats.refreshCurrentSubpage = function () {
         stats.getAllocationAdminData();
-    }
+    };
     if ($scope.stats.currentSubMenu == false) {
         $scope.stats.currentSubMenu = 'Allocations Admin';
-    }
+    };
     $scope.stats.menuStats.subpage.change = 'allocationadmin';
     $scope.stats.refreshData();
 }]);

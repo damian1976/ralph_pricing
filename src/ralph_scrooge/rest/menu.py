@@ -25,7 +25,7 @@ class Menu(APIView):
             },
             {
                 'name': 'Allocations Admin',
-                'href': '#/allocation/admin/',
+                'href': '/scrooge/services-usages-report/',
                 'leftMenu': [],
             }
         ])
